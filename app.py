@@ -9,7 +9,6 @@ def index():
     # no 'templates/' before file -> Flask auto checks 'templates' folder
     return flask.render_template('index.html')
 
-
 if __name__ == '__main__':
     app.debug=True
     app.run()
