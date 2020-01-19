@@ -1,6 +1,8 @@
 import flask
 import requests
 import json
+import datetime
+
 from config import gmaps_api_key, dark_sky_api_key
 
 app = flask.Flask(__name__)
@@ -13,14 +15,14 @@ def index():
 
 @app.route('/', methods=['POST'])
 def index_post():
-    city = flask.request.form['city-name']
-    # find weather data of chosen city
-    return flask.render_template('weatherdata.html', city = city)
+    city = flask.request.form['city-name']######################
+    dateStr = getDate()
+    return flask.render_template('weatherdata.html', city = city, curr_date = dateStr)
 
 @app.route('/weatherdata')
-def weatherdata(city='Irvine'):
-    curr_date = 'January 18, 2020'
-    return flask.render_template('weatherdata.html')
+def weatherdata(city='Irvine'):###########################
+    dateStr = getDate()
+    return flask.render_template('weatherdata.html', city = city, curr_date = dateStr)
 
 
 # API calls
@@ -67,8 +69,14 @@ def getUsefulData(response):
     print(info)
     return info
 
+def getDate():
+    today = datetime.date.today()
+    dateStr = today.strftime("%A, %B %d")
+    return dateStr
+
 
 if __name__ == '__main__':
     app.debug=True
     app.run()
     # getWeatherDataLoc("Irvine")
+    # getDate()
