@@ -1,7 +1,7 @@
 import flask
 import requests
 import json
-import config
+from config import gmaps_api_key, dark_sky_api_key
 
 app = flask.Flask(__name__)
 
@@ -55,4 +55,4 @@ def convertLocToCoords(response):
 if __name__ == '__main__':
     app.debug=True
     app.run()
-    # getWeatherDataLoc("Irvine")
+    getWeatherDataLoc("Irvine")
