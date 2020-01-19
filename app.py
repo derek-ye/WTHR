@@ -15,8 +15,7 @@ def index():
 def index_post():
     city = flask.request.form['city-name']
     # find weather data of chosen city
-    weatherdata(city)
-    
+    return flask.render_template('weatherdata.html', city = city)
 
 @app.route('/weatherdata')
 def weatherdata(city='Irvine'):
