@@ -8,15 +8,20 @@ app = flask.Flask(__name__)
 
 @app.route('/')
 def index():
-
     # no 'templates/' before file -> Flask auto checks 'templates' folder
     return flask.render_template('index.html')
 
+@app.route('/', methods=['POST'])
+def index_post():
+    city = flask.request.form['city-name']
+    # find weather data of chosen city
+    weatherdata(city)
+    
+
 @app.route('/weatherdata')
-def weatherdata():
-
+def weatherdata(city='Irvine'):
+    curr_date = 'January 18, 2020'
     return flask.render_template('weatherdata.html')
-
 
 
 # API calls
@@ -39,9 +44,8 @@ def getWeatherDataCoords(coords: list):
 
     xcoord, ycoord = coords
     url = "https://api.darksky.net/forecast/%s/%d,%d" %(dark_sky_api_key, xcoord, ycoord)
-    response = requests.get(url, verify=True)
-
-
+    response = json.loads(requests.get(url, verify=True).text)
+    return getUsefulData(response)
 
 # helper functions
 def convertLocToCoords(response):
@@ -50,9 +54,22 @@ def convertLocToCoords(response):
     """
     return list(json.loads(response.text)['results'][0]['geometry']['location'].values())         
 
+def getUsefulData(response):
+    info = {}
+    info['latitude'] = response['latitude']
+    info['longitude'] = response['longitude']
+    info['summary'] = response['currently']['summary']
+    info['icon'] = response['currently']['icon']
+    info['humidity'] = response['currently']['humidity']
+    info['precipProbability'] = response['currently']['precipProbability']
+    info['apparentTemperature'] = response['currently']['apparentTemperature']
+    info['windSpeed'] = response['currently']['windSpeed']
+    info['daily'] = response['daily']
+    print(info)
+    return info
 
 
 if __name__ == '__main__':
     app.debug=True
     app.run()
-    getWeatherDataLoc("Irvine")
+    # getWeatherDataLoc("Irvine")

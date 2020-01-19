@@ -18,11 +18,14 @@
   <!-- Custom styles for this template-->
   <link href="../static/custom.css" rel="stylesheet">
   <link href="../static/bootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
+  
+  <!-- Custom scripts -->
+  <script type="text/javascript" src="../static/js/custom.js"></script>
 
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="loadData('Irvine');">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -62,13 +65,6 @@
           <i class="fas fa-fw fa-cog"></i>
           <span>Components</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
-          </div>
-        </div>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
@@ -77,15 +73,6 @@
           <i class="fas fa-fw fa-wrench"></i>
           <span>Utilities</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
       </li>
 
       <!-- Divider -->
@@ -162,7 +149,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
           </div>
 
           <!-- Content Row -->
@@ -175,7 +162,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <!-- <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div> -->
-                      <div class="h3 mb-0 font-weight-bold text-gray-900">Irvine</div>
+                      <div id="city-name" class="h3 mb-0 font-weight-bold text-gray-900">{{ city }}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -209,7 +196,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <!-- <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div> -->
-                      <div class="h3 mb-0 font-weight-bold text-gray-800">January 18, 2020</div>
+                      <div class="h3 mb-0 font-weight-bold text-gray-800"> {{ curr_date }} </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
