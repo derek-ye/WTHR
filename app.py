@@ -1,6 +1,7 @@
 import flask
 import requests
 import json
+import config
 
 app = flask.Flask(__name__)
 
@@ -26,8 +27,7 @@ def getWeatherDataLoc(loc: str):
     #check for 404 errors
 
     # get rid of key
-    gMapsKey = 'AIzaSyBAQ5Sz2UnnVnfz-57UQSJeE2gesyDdgDE'
-    url = 'https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s' %(loc, gMapsKey)
+    url = 'https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s' %(loc, gmaps_api_key)
     response = requests.get(url, verify=True)
     coords = convertLocToCoords(response)
     getWeatherDataCoords(coords)
@@ -38,7 +38,7 @@ def getWeatherDataCoords(coords: list):
     """
 
     xcoord, ycoord = coords
-    url = "https://api.darksky.net/forecast/afb397c644ff5187bae543cefb7eedcc/%d,%d" %(xcoord, ycoord)
+    url = "https://api.darksky.net/forecast/%s/%d,%d" %(dark_sky_api_key, xcoord, ycoord)
     response = requests.get(url, verify=True)
 
 
