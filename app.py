@@ -1,9 +1,5 @@
 import flask
-
-
-
 from helper import *
-from config import gmaps_api_key, dark_sky_api_key
 
 app = flask.Flask(__name__)
 
@@ -11,9 +7,9 @@ app = flask.Flask(__name__)
 def index():
     default_loc = "Irvine"
     # makes get request to the weather API
-    getWeatherDataLoc(default_loc)
+    x = getWeatherDataLoc(default_loc)
     date = getDate()
-    return flask.render_template('index.html')
+    return flask.render_template('index.html', wdata = x)
 
 @app.route('/', methods=['POST'])
 def index_post():
