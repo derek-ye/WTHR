@@ -47,6 +47,7 @@ def getUsefulData(response):
     info['precipProbability'] = response['currently']['precipProbability']
     info['apparentTemperature'] = response['currently']['apparentTemperature']
     info['windSpeed'] = response['currently']['windSpeed']
+    info['hourly'] = response['hourly']
     info['daily'] = response['daily']
     # print(info)
     return info

@@ -20,9 +20,12 @@ def index():
 @app.route('/', methods=['POST'])
 def index_post():
     city = flask.request.form['city-name'].lower()
-    city = city[0].upper() + city[1:]
-    dateStr = getDate()
-    return flask.render_template('weatherdata.html', city = city, curr_date = dateStr)
+    print(city)
+    if (city != ''):                                    # if user presses enter without typing
+        city = city[0].upper() + city[1:]
+        dateStr = getDate()
+        return flask.render_template('weatherdata.html', city = city, curr_date = dateStr)
+    return flask.redirect('/')
 
 @app.route('/weatherdata')
 def weatherdata(city='Irvine'):
