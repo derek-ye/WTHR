@@ -6,10 +6,16 @@ app = flask.Flask(__name__)
 @app.route('/')
 def index():
     default_loc = "Irvine"
+
     # makes get request to the weather API
     x = getWeatherDataLoc(default_loc)
+
+    summary = "It is " + x['summary']
+    temp = str(x['temperature']) + '°'
+    app_temp = x['apparentTemperature']
+
     date = getDate()
-    return flask.render_template('index.html', wdata = x)
+    return flask.render_template('index.html', temperature = temp, summary = summary)
 
 @app.route('/', methods=['POST'])
 def index_post():

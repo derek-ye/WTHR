@@ -14,7 +14,7 @@ def getWeatherDataLoc(loc: str):
     url = 'https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s' %(loc, gmaps_api_key)
     response = requests.get(url, verify=True)
     coords = convertLocToCoords(response)
-    getWeatherDataCoords(coords)
+    return getWeatherDataCoords(coords)
 
 def getWeatherDataCoords(coords: list):
     """
@@ -23,8 +23,8 @@ def getWeatherDataCoords(coords: list):
 
     xcoord, ycoord = coords
     url = "https://api.darksky.net/forecast/%s/%f,%f" %(dark_sky_api_key, xcoord, ycoord)
-    print(url)
     response = json.loads(requests.get(url, verify=True).text)
+    print(response)
     return getUsefulData(response)
 
 # helper functions
@@ -37,6 +37,8 @@ def convertLocToCoords(response):
 
 def getUsefulData(response):
     info = {}
+    info['temperature'] = response['currently']['temperature']
+    info['apparentTemperature'] = response['currently']['apparentTemperature']
     info['latitude'] = response['latitude']
     info['longitude'] = response['longitude']
     info['summary'] = response['currently']['summary']
@@ -46,7 +48,7 @@ def getUsefulData(response):
     info['apparentTemperature'] = response['currently']['apparentTemperature']
     info['windSpeed'] = response['currently']['windSpeed']
     info['daily'] = response['daily']
-    print(info)
+    # print(info)
     return info
 
 def getDate():
