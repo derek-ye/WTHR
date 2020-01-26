@@ -4,19 +4,16 @@ import datetime
 from config import gmaps_api_key, dark_sky_api_key
 
 # API calls
-def getWeatherDataLoc(loc: str): 
-    """
-    loc: "CITY_NAME"
-    """ 
+def getWeatherDataLoc(city: str): 
     #check for 404 errors
 
     # get rid of key
-    url = 'https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s' %(loc, gmaps_api_key)
+    url = 'https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s' %(city, gmaps_api_key)
     response = requests.get(url, verify=True)
     coords = convertLocToCoords(response)
-    return getWeatherDataCoords(coords)
+    return getWeatherDataCoords(city, coords)
 
-def getWeatherDataCoords(coords: list):
+def getWeatherDataCoords(city: str, coords: list):
     """
     data comes in form [x-coord, y-coord]
     """
@@ -24,8 +21,8 @@ def getWeatherDataCoords(coords: list):
     xcoord, ycoord = coords
     url = "https://api.darksky.net/forecast/%s/%f,%f" %(dark_sky_api_key, xcoord, ycoord)
     response = json.loads(requests.get(url, verify=True).text)
-    print(response)
-    return getUsefulData(response)
+    # print(response)
+    return getUsefulData(city, response)
 
 # helper functions
 def convertLocToCoords(response):
@@ -35,8 +32,9 @@ def convertLocToCoords(response):
     return list(json.loads(response.text)['results'][0]['geometry']['location'].values())         
 
 
-def getUsefulData(response):
+def getUsefulData(city: str, response):
     info = {}
+    info["city"] = city
     info['temperature'] = response['currently']['temperature']
     info['apparentTemperature'] = response['currently']['apparentTemperature']
     info['latitude'] = response['latitude']
