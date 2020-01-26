@@ -4,5 +4,9 @@
 }
 
 #paginate-links {
+    margin: 0 28.25rem;
+}
+
+.pag {
     text-align: center;
 }

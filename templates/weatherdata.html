@@ -136,7 +136,6 @@
               <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
               </a>
-
             <div class="topbar-divider d-none d-sm-block"></div>
 
           </ul>
@@ -157,12 +156,12 @@
           <div class="row" id="card-row">
 
             <!-- Location -->
-            <div class="col-xl-4 col-md-6 mb-4" id="card">
+            <!-- <div class="col-xl-4 col-md-6 mb-4" id="card">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mb-4">
-                      <!-- <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div> -->
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
                       <div id="city-name" class="h3 mb-0 font-weight-bold text-gray-900"></div>
                       <div></div>
                     </div>
@@ -172,7 +171,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- not sure what to put here yet -->
             <!-- <div class="col-xl-4 col-md-6 mb-4">
@@ -261,14 +260,33 @@
               </div>
             </div>
 
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Content Column -->
-            <div id="paginate-links"> {{ pagination.links }} </div>
-
+            
           </div>
 
+          <div class="row" id="card-row">
+            {% for card in cards %}
+            <div class="col-xl-4 col-md-6 mb-4" id="card">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mb-4">
+                      <!-- <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div> -->
+                      <div id="date-name" class="h3 mb-0 font-weight-bold text-gray-900"> {{ card }} </div>
+                      <div> {{ high[loop.index] }}</div>
+                      <div> {{ low[loop.index] }}</div>
+                      <div> {{ summary[loop.index] }}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            <div id="paginate-links" style="margin: 0 28.25rem;"> {{ pagination.links }} </div>
+          </div>
+        
         </div>
         <!-- /.container-fluid -->
 
