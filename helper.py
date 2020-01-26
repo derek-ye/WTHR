@@ -52,5 +52,18 @@ def getUsefulData(city: str, response):
 
 def getDate():
     today = datetime.date.today()
-    dateStr = today.strftime("%A, %B %d")
+    #dateStr = today.strftime("%A, %B %d")
+
+    #returns day of the week
+    dateStr = today.strftime("%A")
     return dateStr
+
+def getWeekdays():
+    '''
+    Creates an array for the daily weather view, starting from the current day
+    '''
+    weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    date = getDate()
+    todaysIndice = weekdays.index(date)
+    
+    return weekdays[todaysIndice:] + weekdays[:todaysIndice]

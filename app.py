@@ -37,9 +37,10 @@ def weatherdata(city='Irvine'):
     highs = [i["temperatureHigh"] for i in response["daily"]["data"]]
     lows = [i["temperatureLow"] for i in response["daily"]["data"]]
     summary = [i["summary"] for i in response["daily"]["data"]]
-
-    weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    
     pagination = Pagination(page=2, per_page=3, total=7, css_framework='bootstrap4')
+
+    weekdays = getWeekdays()
 
     return flask.render_template('weatherdata.html', 
                                 city = city, 
