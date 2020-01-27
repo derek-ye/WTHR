@@ -21,10 +21,11 @@ Open http://127.0.0.1:5000/ to view it in the browser.
 
 ## Running the tests
 
-* Requirements
+* Requirements (more info [here](https://nightwatchjs.org/guide))
   * Java(Runtime Environment JRE)
   * Selenium
   * Nightwatch
+  * Chromedriver
 1. Clone the repo
 2. CD into the test folder
 3. Run the config file you created to download the Selenium driver.
@@ -35,6 +36,11 @@ node nightwatch.conf.BASIC.js
 ```
 nightwatch --config nightwatch.conf.BASIC.js
 ```
+
+
+### Tests
+1. Verify title and body are rendering correctly.
+2. Checks search functionalities from home page and details page forms.
 
 
 ## Built With
