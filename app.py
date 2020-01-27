@@ -1,6 +1,6 @@
 import flask
 from helper import *
-from flask_paginate import Pagination, get_page_args
+from flask_paginate import Pagination, get_page_args, url_for
 
 app = flask.Flask(__name__)
 
@@ -26,8 +26,8 @@ def index_post():
     if (city != ''):                                    # if user presses enter without typing
         city = city[0].upper() + city[1:]
         dateStr = getDate()
+        
         return weatherdata(city)
-
     return flask.redirect('/')
 
 @app.route('/weatherdata')
