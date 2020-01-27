@@ -33,14 +33,23 @@ def index_post():
 def weatherdata(city='Irvine'):
     dateStr = getDate()
     response = getWeatherDataLoc(city)
+    canSearch = False
+
+    page = int(flask.request.args.get('page', 1))
+    per_page = 3
+    offset = (page - 1) * per_page
+
 
     highs = [i["temperatureHigh"] for i in response["daily"]["data"]]
     lows = [i["temperatureLow"] for i in response["daily"]["data"]]
     summary = [i["summary"] for i in response["daily"]["data"]]
-    
-    pagination = Pagination(page=2, per_page=3, total=7, css_framework='bootstrap4')
 
     weekdays = getWeekdays()
+
+    
+    pagination = Pagination(page=page, per_page=per_page, offset=offset, total= len(weekdays), css_framework='bootstrap4', search=canSearch)
+
+    
 
     return flask.render_template('weatherdata.html', 
                                 city = city, 

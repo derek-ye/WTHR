@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="../static/custom.css" rel="stylesheet">
+  <link href="../static/css/custom.css" rel="stylesheet">
   <link href="../static/bootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
   
   <!-- Custom scripts -->
@@ -263,6 +263,8 @@
             
           </div>
 
+          <table>
+          <tbody>
           <div class="row" id="card-row">
             {% for card in cards %}
             <div class="col-xl-4 col-md-6 mb-4" id="card">
@@ -284,7 +286,11 @@
               </div>
             </div>
             {% endfor %}
-            <div id="paginate-links" style="margin: 0 28.25rem;"> {{ pagination.links }} </div>
+          </div>
+          </tbody>
+          </table>
+          <div class="row">
+            <div id="paginate-links"> {{ pagination.links }} </div>
           </div>
         
         </div>
