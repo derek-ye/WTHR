@@ -44,8 +44,9 @@ def weatherdata(city='Irvine'):
     lows = [i["temperatureLow"] for i in response["daily"]["data"]]
     summary = [i["summary"] for i in response["daily"]["data"]]
 
+    i = (page - 1) * per_page
     weekdays = getWeekdays()
-
+    weekdays_for_render = weekdays[i:i+per_page]
     
     pagination = Pagination(page=page, per_page=per_page, offset=offset, total= len(weekdays), css_framework='bootstrap4', search=canSearch)
 
@@ -55,7 +56,7 @@ def weatherdata(city='Irvine'):
                                 city = city, 
                                 curr_date = dateStr, 
                                 weather_data = response, 
-                                cards = weekdays, 
+                                cards = weekdays_for_render, 
                                 pagination = pagination,
                                 high=highs, 
                                 low=lows, 
