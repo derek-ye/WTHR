@@ -1,12 +1,19 @@
 .feels-like {
-    margin: 100px 100px;
-    float: left;
+    display: inline-block;
+    margin: 2rem 3rem;
+}
+
+.info-container {
+    display: inline-block;
+    height: 100%;
+    padding: 1rem auto;
+
 }
 
 #paginate-links {
     margin: auto;
 }
 
-.pag {
-    text-align: center;
+#topbar-icon {
+    height: 100px;
 }

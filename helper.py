@@ -5,13 +5,12 @@ from config import gmaps_api_key, dark_sky_api_key
 
 # API calls
 def getWeatherDataLoc(city: str): 
-    #check for 404 errors
 
-    # get rid of key
     url = 'https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s' %(city, gmaps_api_key)
-    response = requests.get(url, verify=True)
+    response = json.loads(requests.get(url, verify=True).text)
+    foundCity = response['results'][0]['formatted_address']
     coords = convertLocToCoords(response)
-    return getWeatherDataCoords(city, coords)
+    return getWeatherDataCoords(foundCity, coords)
 
 def getWeatherDataCoords(city: str, coords: list):
     """
@@ -27,18 +26,22 @@ def getWeatherDataCoords(city: str, coords: list):
 # helper functions
 def convertLocToCoords(response):
     """
-    returns API response in [xcoord, ycoord] format
+    returns API response (as a JSON) in [xcoord, ycoord] format
     """
-    return list(json.loads(response.text)['results'][0]['geometry']['location'].values())         
+    return list(response['results'][0]['geometry']['location'].values())         
 
 
 def getUsefulData(city: str, response):
+    """
+    return a dictionary with the selected information, as well as hourly and daily info
+
+    """
     info = {}
     info["city"] = city
     info['temperature'] = response['currently']['temperature']
     info['apparentTemperature'] = response['currently']['apparentTemperature']
-    info['latitude'] = response['latitude']
-    info['longitude'] = response['longitude']
+    info['latitude'] = "%.2f" % response['latitude']
+    info['longitude'] = "%.2f" % response['longitude']
     info['summary'] = response['currently']['summary']
     info['icon'] = response['currently']['icon']
     info['humidity'] = response['currently']['humidity']
@@ -59,9 +62,9 @@ def getDate():
     return dateStr
 
 def getWeekdays():
-    '''
+    """
     Creates an array for the daily weather view, starting from the current day
-    '''
+    """
     weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     date = getDate()
     todaysIndice = weekdays.index(date)

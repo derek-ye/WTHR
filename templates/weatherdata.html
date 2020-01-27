@@ -31,77 +31,6 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-        <div class="sidebar-brand-icon">
-          <i class="fas fa-poo-storm"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">WTHR</div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="weatherdata">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Daily Weather</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
-        </a>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-    </ul>
-    <!-- End of Sidebar -->
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -115,6 +44,13 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
+
+          <!-- Topbar Icon -->
+          <a class="d-flex align-items-center justify-content-center" id="topbar-icon" href="/">
+            <div class="topbar-brand-icon">
+              <i class="fas fa-poo-storm"></i>
+            </div>
+          </a>
 
           <!-- Topbar Search -->
           <form id="searchForm" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="POST">
@@ -148,7 +84,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Daily Weather for {{ city }}</h1>
+            <h1 class="h3 mb-0 text-gray-800">Weekly Report - {{ city }}</h1>
             <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
           </div>
 
@@ -219,14 +155,15 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <!-- <h6 class="m-0 font-weight-bold text-primary"></h6> -->
                     <div>
-                        <h6 class="m-0 font-weight-bold text-primary">Wind</h6>
+                        <h5 class="m-0 font-weight-bold text-primary">Windspeed: {{ wind }} mph</h5>
                     </div>
                     <div>
-                        <h6 class="m-0 font-weight-bold text-primary">Humidity</h6>
+                        <h5 class="m-0 font-weight-bold text-primary">Humidity: {{ humidity }}%</h5>
                     </div>
                     <div>
-                        <h6 class="m-0 font-weight-bold text-primary">Pressure</h6>
+                        <h5 class="m-0 font-weight-bold text-primary">Chance of Rain: {{ chanceRain }}</h5>
                     </div>
+
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -236,26 +173,42 @@
 
                             </div>
                             <div id="description">
-                                <div id="summary-title" class="h3 mb-0 font-weight-bold text-gray-900">
-                                    Temperature, Condition
-                                </div>
-                                <div style="display: inline-block;">
-                                    <div class="feels-like">
-                                        <h6>Feels Like:</h6>
-                                    </div>
-                                    <div class="feels-like">
-                                        <h6>Low:</h6>
-                                    </div>
-                                    <div class="feels-like">
-                                        <h6>High:</h6>
-                                    </div>
+                                <div id="summary-title" class="h1 mb-0 font-weight-bold text-gray-900">
+                                    {{ temp }} - {{ condition }}
                                 </div>
                                 
                             </div>
-                        </div>
-                        
-
                     </div>
+                    <div class="text-center">
+                      <div class="info-container">
+                        <br>
+                        <div class="feels-like">
+                          <i class="fas fa-thermometer-half fa-2x text-gray-600"></i>
+                          <h4><strong>{{ app_temp }}</strong></h4>
+                        </div>
+                        <br>
+                        <div class="feels-like">
+                          <i class="fas fa-map-marker-alt fa-2x text-gray-600"></i>
+                          <h4><strong>{{ lat }}, {{ long }}</strong></h4>
+                        </div>
+                      </div>
+              
+                      <img style="width:25rem; margin-top: -7rem;" src="../static/img/undraw_weather_app.svg" alt="">
+                      <div class="info-container">
+                        <br>
+                        <div class="feels-like">
+                          <i class="fas fa-snowflake fa-2x text-gray-600"></i>
+                          <h4><strong>{{ curr_low }}</strong></h4>
+                        </div>
+                        <br>
+                        <div class="feels-like">
+                          <i class="fas fa-fire fa-2x text-gray-600"></i>
+                          <h4><strong>{{ curr_high }}</strong></h4>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
