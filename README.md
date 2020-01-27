@@ -47,3 +47,7 @@ nightwatch --config nightwatch.conf.BASIC.js
 * [Google Maps API](https://developers.google.com/maps/documentation)
 * [DarkSky API](https://darksky.net/dev/docs) - Weather Data
 * Bootstrap ([1](https://startbootstrap.com/themes/grayscale/)|[2](https://startbootstrap.com/themes/sb-admin-2/))
+
+## Roadmap
+* Update mobile scaling issues
+* Add ability to change home page's weather status (currently it's set on Irvine)
