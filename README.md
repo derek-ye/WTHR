@@ -1,4 +1,4 @@
-# 🌧 WTHR 
+# ☔️ WTHR 
 
 WTHR is a Flask webapp that reports daily and weather data.
 #### Check it out at [wthr.derekye.com](wthr.derekye.com)!
