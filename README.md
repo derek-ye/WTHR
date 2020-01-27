@@ -21,7 +21,20 @@ Open http://127.0.0.1:5000/ to view it in the browser.
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+* Requirements
+  * Java(Runtime Environment JRE)
+  * Selenium
+  * Nightwatch
+1. Clone the repo
+2. CD into the test folder
+3. Run the config file you created to download the Selenium driver.
+```
+node nightwatch.conf.BASIC.js
+```
+4. Run tests
+```
+nightwatch --config nightwatch.conf.BASIC.js
+```
 
 
 ## Built With
