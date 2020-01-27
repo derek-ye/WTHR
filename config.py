@@ -1,2 +1,2 @@
-gmaps_api_key = 'AIzaSyCHgl1P1Fk_Le1mRW2HgiaxgPxK3TDJ6kA'
-dark_sky_api_key = 'edd9e94176190161525b4b59bb807908'
+gmaps_api_key = 'AIzaSyCdwoKB_qGskZ46y1pCHYIvfbOxmsudwmE'
+dark_sky_api_key = '49efdce799c1a53f6481cf2a6a8cfcdf'
