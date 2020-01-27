@@ -1,7 +1,7 @@
 # ☔️ WTHR 
 
 WTHR is a Flask webapp that reports daily and weather data.
-#### Check it out at [wthr.derekye.com](https://wthr.derekye.com)!
+#### Check it out [here](http://whispering-cliffs-99470.herokuapp.com/)!
   
 ---
 
