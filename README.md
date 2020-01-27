@@ -1,6 +1,7 @@
 # WTHR
 
 WTHR is a Flask webapp that reports daily and weather data.
+Check it out at [wthr.derekye.com]!
   
 ## Getting Started
 
