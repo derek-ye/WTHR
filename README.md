@@ -1,7 +1,7 @@
 # ☔️ WTHR 
 
 WTHR is a Flask webapp that reports daily and weather data.
-#### Unfortunately, DarkSky was purchased by Apple and the API is no longer functioning!
+#### Unfortunately, DarkSky was purchased by Apple and the API is no longer functioning.
   
 ---
 
