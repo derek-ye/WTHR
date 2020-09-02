@@ -1,7 +1,7 @@
 # ☔️ WTHR 
 
 WTHR is a Flask webapp that reports daily and weather data.
-#### Check it out [here](http://whispering-cliffs-99470.herokuapp.com/)!
+#### Unfortunately, DarkSky was purchased by Apple and the API is no longer functioning!
   
 ---
 
